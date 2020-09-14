@@ -1,25 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Insert-Name-Rating Star Rating</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Five Star Rating</title>
+  <meta name="description" content="Five star rating component built with JavaScript and CSS, and packaged as a bower component.">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="css/rating.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
 </head>
-
 <body>
-    <div class="rate">
-        <input type="radio" id="star5" name="rate" value="5" />
-        <label for="star5" title="text">5 stars</label>
-        <input type="radio" id="star4" name="rate" value="4" />
-        <label for="star4" title="text">4 stars</label>
-        <input type="radio" id="star3" name="rate" value="3" />
-        <label for="star3" title="text">3 stars</label>
-        <input type="radio" id="star2" name="rate" value="2" />
-        <label for="star2" title="text">2 stars</label>
-        <input type="radio" id="star1" name="rate" value="1" />
-        <label for="star1" title="text">1 star</label>
-    </div>
-</body>
+  
+<header class="o-header">
+  <nav class="o-header-nav">
+    <a href="http://callmenick.com/_development/responsive-tabs/" class="o-header-nav__link"><i class="fa fa-arrow-left"></i> Previous Demo</a>
+    <a href="http://callmenick.com/post/five-star-rating-component-with-javascript-css" class="o-header-nav__link">Back To Article <i class="fa fa-star"></i></a>
+  </nav>
+  <div class="o-container">
+    <h1 class="o-header__title">Five Star Rating</h1>
+  </div>
+</header>
 
+<main class="o-content">
+  <div class="o-container">
+    <div class="o-section">
+      <div id="shop"></div>
+    </div>
+    <div class="o-section">
+      <div id="github-icons"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="o-footer">
+  <div class="o-container">
+    <small>&copy; 2015, callmenick.com</small>
+  </div>
+</footer>
+
+<script src="js/dist/rating.min.js"></script>
+<script>
+
+  /**
+   * Demo in action!
+   */
+  (function() {
+
+    'use strict';
+
+    // SHOP ELEMENT
+    var shop = document.querySelector('#shop');
+
+    // DUMMY DATA
+    var data = [
+      {
+        title: "Dope Hat",
+        description: "Dope hat dolor sit amet, consectetur adipisicing elit. Commodi consectetur similique ullam natus ut debitis praesentium.",
+        rating: 3
+      },
+      {
+        title: "Hot Top",
+        description: "Hot top dolor sit amet, consectetur adipisicing elit. Commodi consectetur similique ullam natus ut debitis praesentium.",
+        rating: 2
+      },
+      {
+        title: "Fresh Kicks",
+        description: "Fresh kicks dolor sit amet, consectetur adipisicing elit. Commodi consectetur similique ullam natus ut debitis praesentium.",
+        rating: null
+      }
+    ];
+
+    // INITIALIZE
+    (function init() {
+      for (var i = 0; i < data.length; i++) {
+        addRatingWidget(buildShopItem(data[i]), data[i]);
+      }
+    })();
+
+    // BUILD SHOP ITEM
+    function buildShopItem(data) {
+      var shopItem = document.createElement('div');
+
+      var html = '<div class="c-shop-item__img"></div>' +
+        '<div class="c-shop-item__details">' +
+          '<h3 class="c-shop-item__title">' + data.title + '</h3>' +
+          '<p class="c-shop-item__description">' + data.description + '</p>' +
+          '<ul class="c-rating"></ul>' +
+        '</div>';
+
+      shopItem.classList.add('c-shop-item');
+      shopItem.innerHTML = html;
+      shop.appendChild(shopItem);
+
+      return shopItem;
+    }
+
+    // ADD RATING WIDGET
+    function addRatingWidget(shopItem, data) {
+      var ratingElement = shopItem.querySelector('.c-rating');
+      var currentRating = data.rating;
+      var maxRating = 5;
+      var callback = function(rating) { alert(rating); };
+      var r = rating(ratingElement, currentRating, maxRating, callback);
+    }
+
+  })();
+
+</script>
+
+</body>
 </html>
