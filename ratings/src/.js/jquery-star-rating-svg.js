@@ -1,9 +1,8 @@
 /*
- *  jQuery StarRatingSvg v1.2.0
+ *  jQuery StarRatingSvg v1.0.0
  *
  *  http://github.com/cinful79/star-rating-svg
  *  Author: Cindy Bonilla
- *  Licensed under MIT
  */
 
 ;(function ( $, window, document, undefined ) {
